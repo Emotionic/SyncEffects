@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="UniqueMaker" size="100.000000 100.000000" />
+    <ImageTarget name="Emotionic" size="100.000000 98.471619" />
+    <ImageTarget name="yosano" size="100.000000 131.377548" />
+    <ImageTarget name="oykdn_icon" size="100.000000 100.000000" />
+  </Tracking>
+</QCARConfig>
