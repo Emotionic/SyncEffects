@@ -42,7 +42,7 @@ public class EffectManager : MonoBehaviour
     // Unity Events
     // --------------------
 
-    private void Start()
+    private void Awake()
     {
         effects = new List<EffectObject>();
     }
