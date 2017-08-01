@@ -36,4 +36,33 @@ public class ButtonMgr : MonoBehaviour
         Viewer.GetComponent<LogViewer>().Clear();
     }
 
+    public void BtnGenEff_OnClick()
+    {
+        var _x = GameObject.FindGameObjectsWithTag("GenEffX")[0].GetComponent<InputField>().text;
+        var _y = GameObject.FindGameObjectsWithTag("GenEffY")[0].GetComponent<InputField>().text;
+        var _z = GameObject.FindGameObjectsWithTag("GenEffZ")[0].GetComponent<InputField>().text;
+
+        try
+        {
+            var obj = new EffectData();
+
+            obj.EffectName = "Laser01";
+            obj.Position = new Vector3(float.Parse(_x), float.Parse(_y), float.Parse(_z));
+            obj.Rotation = Quaternion.Euler(0, -90, 0);
+            obj.LocalScale = new Vector3(1.0f, 1.0f, 1.0f);
+
+            if (Echo.SendQ != null)
+            {
+                Echo.SendQ.Enqueue(obj);
+            }
+
+        }
+        catch
+        {
+            Viewer.GetComponent<LogViewer>().AddLine("Position Value is not valid.");
+            return;
+        }
+
+    }
+
 }

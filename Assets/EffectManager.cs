@@ -27,6 +27,19 @@ public class EffectManager : MonoBehaviour
         effects.Add(eff);
     }
 
+    public void StopAll()
+    {
+        foreach(var eff in effects)
+        {
+            if (eff.Handle.HasValue)
+            {
+                eff.Handle.Value.Stop();
+                eff.Handle = null;
+            }
+        }
+
+    }
+
     public bool DEBUGMODE = false;
     public LogViewer Viewer;
 

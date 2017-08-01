@@ -11,17 +11,14 @@ public class MyTrackableHandler : MonoBehaviour, ITrackableEventHandler
     private LogViewer _viewer;
 
     private bool isTracking = false;
-
+    
     private void Update()
     {
-        if (isTracking)
-        {
-            var obj = new GameObject();
-            obj.transform.position = new Vector3(-150.0f, -150.0f, -50.0f);
-            obj.transform.rotation = Quaternion.Euler(0, -90, 0);
-            obj.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        // _viewer.AddLine("isTracking : " + isTracking);
 
-            _effmgr.PlayEffect(obj, "Laser01", false);
+        if (!isTracking)
+        {
+            _effmgr.StopAll();
         }
         
     }

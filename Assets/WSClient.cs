@@ -11,12 +11,15 @@ public class WSClient : MonoBehaviour
     public LogViewer Viewer;
     public EffectManager EffMgr;
     public WebSocket ws;
-
+    
     private Queue<EffectData> effectQ;
+    private Queue<string> LogQ;
 
     private void Start()
     {
         effectQ = new Queue<EffectData>();
+        LogQ = new Queue<string>();
+
         ws = new WebSocket("ws://" + TitleBtnMgr.IPAddress + ":3000/");
 
         ws.OnOpen += (sender, e) =>
@@ -26,7 +29,8 @@ public class WSClient : MonoBehaviour
 
         ws.OnMessage += (sender, e) =>
         {
-            Viewer.GetComponent<LogViewer>().AddLine("Data: " + e.Data);
+            // Viewer.GetComponent<LogViewer>().AddLine("Data: " + e.Data);
+            LogQ.Enqueue("Data: " + e.Data);
 
             var recvs = e.Data.Split();
 
@@ -61,13 +65,17 @@ public class WSClient : MonoBehaviour
         //    Viewer.GetComponent<LogViewer>().AddLine("REQ TEST EFF");
         //}
 
-        foreach(var eff in effectQ)
+        foreach (var eff in effectQ)
         {
             EffMgr.GetComponent<EffectManager>().PlayEffect(eff);
         }
 
         effectQ.Clear();
 
+        foreach(var log in LogQ)
+            Viewer.GetComponent<LogViewer>().AddLine(log);
+
+        LogQ.Clear();
     }
 
     private void OnDestroy()

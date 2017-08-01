@@ -28,7 +28,13 @@ public class TitleBtnMgr : MonoBehaviour
 
     public void BtnServer_OnClick()
     {
+        IPAddress = inputField.GetComponent<InputField>().text;
         SceneManager.LoadScene("server");
+    }
+
+    public void BtnAR_OnClick()
+    {
+        SceneManager.LoadScene("clientAR");
     }
 
 }

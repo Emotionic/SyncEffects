@@ -17,3 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/server.unity
     guid: 57180e9758f196d4aa61ae0645dab73d
+  - enabled: 1
+    path: Assets/clientAR.unity
+    guid: c88771a527c07e640ae3ec82170c70bd
